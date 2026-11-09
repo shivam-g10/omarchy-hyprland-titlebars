@@ -145,6 +145,11 @@ void COmarchyFloatingHyprBar::onMouseButton(Event::SCallbackInfo &info, IPointer
     return;
   }
 
+  // Let Zones own Super+Shift drags, including their release.
+  const auto zonesMods = HL_MODIFIER_META | HL_MODIFIER_SHIFT;
+  if ((g_pInputManager->getModsFromAllKBs() & zonesMods) == zonesMods)
+    return;
+
   if (!inputIsValid())
     return;
 
